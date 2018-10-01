@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import DeckInfo from '../components/DeckInfo';
 
 const dummyData = {
   React: {
@@ -34,19 +35,6 @@ const dummyData = {
   }
 };
 
-function DeckInfo ({ title, questionsNum }) {
-  return (
-    <View style={styles.deckInfoContainer}>
-      <Text style={styles.deckTitle}>
-        {title}
-      </Text>
-      <Text style={styles.deckSubTitle}>
-        {questionsNum} {questionsNum === 1 ? 'card' : 'cards'}
-      </Text>
-      <View style = {styles.lineStyle} />
-    </View>
-  );
-}
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -56,14 +44,16 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
         <ScrollView style={styles.container}>
-        {Object.keys(dummyData).map((deckID) => {
-          const deck = dummyData[deckID];
+        {
+          Object.keys(dummyData).map((deckID) => {
+            const deck = dummyData[deckID];
 
-          return (
-            <DeckInfo title={deck.title} questionsNum={deck.questions.length} key={deck.title}/>
-          );
-        
-        })}
+            return (
+              <DeckInfo title={deck.title} questionsNum={deck.questions.length} key={deck.title}/>
+            );
+          
+          })
+        }
         </ScrollView>
     );
   }
@@ -74,20 +64,4 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  deckInfoContainer: {
-    paddingTop: 30,
-  },
-  deckTitle: {
-    fontSize: 30,
-    textAlign: 'center',
-  },
-  deckSubTitle: {
-    fontSize: 20,
-    textAlign: 'center',
-  },
-  lineStyle:{
-    borderWidth: 0.5,
-    borderColor: 'black',
-    margin: 20,
-  }
 });
