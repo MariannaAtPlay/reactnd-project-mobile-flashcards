@@ -1,9 +1,9 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
-export default class LinksScreen extends React.Component {
+export default class NewDeckScreen extends React.Component {
   static navigationOptions = {
-    title: 'Links',
+    title: 'New Deck',
   };
 
   render() {
