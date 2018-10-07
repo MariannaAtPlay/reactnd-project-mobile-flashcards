@@ -1,45 +1,53 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-
 import TabBarIcon from '../components/TabBarIcon';
 import DecksScreen from '../screens/DecksScreen';
 import NewDeckScreen from '../screens/NewDeckScreen';
+import { russianViolet, tabIconDefault } from '../constants/Colors';
 
-const HomeStack = createStackNavigator({
-  Home: DecksScreen,
+const DecksStack = createStackNavigator({
+  Decks: DecksScreen,
 });
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+DecksStack.navigationOptions = {
+  tabBarLabel: 'Decks',
+  tabBarOptions: {
+    activeTintColor: russianViolet,
+    inactiveTintColor: tabIconDefault,
+  },
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-home${focused ? '' : '-outline'}`
+          : 'md-home'
       }
     />
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: NewDeckScreen,
+const NewDeckStack = createStackNavigator({
+  NewDeck: NewDeckScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+NewDeckStack.navigationOptions = {
+  tabBarLabel: 'New Deck',
+  tabBarOptions: {
+    activeTintColor: russianViolet,
+    inactiveTintColor: tabIconDefault,
+  },
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+      name={Platform.OS === 'ios' ? `ios-add-circle${focused ? '' : '-outline'}` : 'add-circle'}
     />
   ),
 };
 
 
 export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
+  DecksStack,
+  NewDeckStack,
 });

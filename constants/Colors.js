@@ -1,14 +1,7 @@
-const tintColor = '#2f95dc';
-
-export default {
-  tintColor,
-  tabIconDefault: '#ccc',
-  tabIconSelected: tintColor,
-  tabBar: '#fefefe',
-  errorBackground: 'red',
-  errorText: '#fff',
-  warningBackground: '#EAEB5E',
-  warningText: '#666804',
-  noticeBackground: tintColor,
-  noticeText: '#fff',
-};
+export const vistaBlue = '#613DC1';
+export const ksuPurple = '#4E148C';
+export const russianViolet = '#4B1D47';
+export const lavenderMist = '#EBD9FD';
+export const tabIconDefault = '#ccc';
+export const tabIconSelected = ksuPurple;
+export const tabBar= 'white';

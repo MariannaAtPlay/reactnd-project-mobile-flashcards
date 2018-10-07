@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { russianViolet } from '../constants/Colors';
 
 function DeckInfo ({ title, questionsNum }) {
   return (
@@ -16,25 +17,24 @@ function DeckInfo ({ title, questionsNum }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
   deckInfoContainer: {
     paddingTop: 30,
   },
   deckTitle: {
     fontSize: 30,
     textAlign: 'center',
+    color: russianViolet,
   },
   deckSubTitle: {
     fontSize: 20,
     textAlign: 'center',
+    color: russianViolet,
   },
   lineStyle:{
     borderWidth: 0.5,
-    borderColor: 'black',
-    margin: 20,
+    borderColor: russianViolet,
+    marginBottom: 20,
+    marginTop: 20,
   }
 });
 
