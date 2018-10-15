@@ -1,12 +1,17 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 
-function MyButton ({ title, color, onPress }) {
+function MyButton ({ title, color, onPress, outline }) {
   const buttonStyles = [styles.button];
   const textStyles = [styles.text];
 
-  if (color) {
-      buttonStyles.push({backgroundColor: color});
+  if (color && !outline) {
+    buttonStyles.push({backgroundColor: color});
+  } else if (color && outline) {
+    textStyles.push({color: color});
+    textStyles.push({borderWidth: 1});
+    textStyles.push({borderStyle: 'solid'});
+    textStyles.push({borderColor: color});
   }
 
   return (
@@ -26,10 +31,12 @@ const styles = StyleSheet.create({
         height: 45,
         width: 120,
         borderRadius: 2,
+        margin: 10,
       },
       android: {
         elevation: 4,
         borderRadius: 2,
+        margin: 10
       },
     }),
     text: Platform.select({

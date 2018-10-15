@@ -37,7 +37,7 @@ const dummyData = {
 };
 
 
-export default class HomeScreen extends React.Component {
+class DecksScreen extends React.Component {
   static navigationOptions = {
     title: 'Decks',
   };
@@ -50,7 +50,18 @@ export default class HomeScreen extends React.Component {
             const deck = dummyData[deckID];
 
             return (
-              <DeckInfo title={deck.title} questionsNum={deck.questions.length} key={deck.title}/>
+              <DeckInfo 
+                title={deck.title} 
+                questionsNum={deck.questions.length} 
+                key={deck.title} 
+                onPress={() => {
+                  /* Navigate to the Deck route with params */
+                  this.props.navigation.navigate('Deck', {
+                    title: deck.title,
+                    questionsNum: deck.questions.length,
+                  });
+                }}
+              />
             );
           
           })
@@ -66,3 +77,5 @@ const styles = StyleSheet.create({
     backgroundColor: lavenderMist,
   },
 });
+
+export default DecksScreen;

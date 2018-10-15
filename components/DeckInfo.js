@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { russianViolet } from '../constants/Colors';
 
-function DeckInfo ({ title, questionsNum }) {
+function DeckInfo ({ title, questionsNum, onPress }) {
   return (
-    <View style={styles.deckInfoContainer}>
+    <TouchableOpacity style={styles.deckInfoContainer} onPress={onPress}>
       <Text style={styles.deckTitle}>
         {title}
       </Text>
@@ -12,7 +12,7 @@ function DeckInfo ({ title, questionsNum }) {
         {questionsNum} {questionsNum === 1 ? 'card' : 'cards'}
       </Text>
       <View style = {styles.lineStyle} />
-    </View>
+    </TouchableOpacity>
   );
 }
 
