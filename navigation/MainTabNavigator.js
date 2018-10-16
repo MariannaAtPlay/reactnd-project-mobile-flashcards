@@ -4,12 +4,14 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import DecksScreen from '../screens/DecksScreen';
 import DeckScreen from '../screens/DeckScreen';
+import QuizScreen from '../screens/QuizScreen';
 import NewDeckScreen from '../screens/NewDeckScreen';
 import { russianViolet, tabIconDefault } from '../constants/Colors';
 
 const DecksStack = createStackNavigator({
   Decks: DecksScreen,
   Deck: DeckScreen,
+  Quiz: QuizScreen,
 });
 
 DecksStack.navigationOptions = {

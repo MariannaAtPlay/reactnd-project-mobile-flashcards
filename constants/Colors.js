@@ -5,3 +5,5 @@ export const lavenderMist = '#EBD9FD';
 export const tabIconDefault = '#ccc';
 export const tabIconSelected = ksuPurple;
 export const tabBar= 'white';
+export const red = '#B20000';
+export const green= '#006B00';
