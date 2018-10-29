@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { ksuPurple, lavenderMist, russianViolet } from '../constants/Colors';
 import MyButton from '../components/MyButton';
+import { saveDeckTitle } from '../utils/api';
+
 
 export default class NewDeckScreen extends React.Component {
   static navigationOptions = {
@@ -10,6 +12,18 @@ export default class NewDeckScreen extends React.Component {
 
   state = {
     title: ''
+  }
+
+  handleSubmit = async () => {
+    const { navigation } = this.props;
+
+    this.setState({
+      title: ''
+    });
+    await saveDeckTitle(this.state.title);
+    navigation.navigate('Decks', {
+      shouldFetch: true,
+    });
   }
 
   render() {
@@ -24,7 +38,11 @@ export default class NewDeckScreen extends React.Component {
           onChangeText={(title) => this.setState({title})}
           value={this.state.title}
         />
-        <MyButton title='Submit' color={ksuPurple}/>
+        <MyButton 
+          title='Submit' 
+          color={ksuPurple}
+          onPress={this.handleSubmit}  
+        />
       </View>
     );
   }

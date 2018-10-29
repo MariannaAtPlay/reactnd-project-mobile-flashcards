@@ -11,20 +11,7 @@ import {
 } from 'react-native';
 import MyButton from '../components/MyButton';
 import { ksuPurple, lavenderMist, russianViolet, red, green } from '../constants/Colors';
-
-const dummyData = {
-  title: 'React',
-  questions: [
-    {
-      question: 'What is React?',
-      answer: 'A library for managing user interfaces'
-    },
-    {
-      question: 'Where do you make Ajax requests in React?',
-      answer: 'The componentDidMount lifecycle event'
-    }
-  ]
-};
+import { getDeck } from '../utils/api';
 
 class QuizScreen extends React.Component {
   static navigationOptions = {
@@ -39,13 +26,16 @@ class QuizScreen extends React.Component {
     questions: [],
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     //TODO get data from AsyncStorage
     const { navigation } = this.props;
     const title = navigation.getParam('title');
+    const deck = await getDeck(title);
+    console.log('inside Quiz componentDidMount, deck= ', deck, 'title = ', title)
+
     this.setState({
-      title,
-      questions: dummyData.questions,
+      title: deck.title,
+      questions: deck.questions,
     });
   }
 
@@ -72,6 +62,7 @@ class QuizScreen extends React.Component {
 
   render() {
     const { questions, currentQuestion, viewFront, totalCorrect, title } = this.state;
+    const { navigation } = this.props;
 
     if (questions.length && currentQuestion === questions.length) {
       //display quiz results
@@ -86,7 +77,7 @@ class QuizScreen extends React.Component {
             outline
             onPress={() => {
               /* Navigate to the Deck route with params */
-              this.props.navigation.navigate('Deck', {
+              navigation.navigate('Deck', {
                 title,
               });
             }}    

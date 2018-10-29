@@ -8,33 +8,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { NavigationEvents } from 'react-navigation';
 import DeckInfo from '../components/DeckInfo';
 import { lavenderMist } from '../constants/Colors';
-
-const dummyData = {
-  React: {
-    title: 'React',
-    questions: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces'
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      }
-    ]
-  },
-  JavaScript: {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      }
-    ]
-  }
-};
+import { getDecks } from '../utils/api';
 
 
 class DecksScreen extends React.Component {
@@ -42,30 +19,61 @@ class DecksScreen extends React.Component {
     title: 'Decks',
   };
 
+  state = {
+    decks: {}
+  }
+
+  async componentDidMount () {
+    const data = await getDecks();
+    this.setState({
+      decks: data,
+    });
+  }
+
+  fetchIfNeeded = async () => {
+    const { navigation } = this.props;
+    const shouldFetch = navigation.getParam('shouldFetch', false);
+
+    if (shouldFetch) {
+      console.log('Fetching data, shouldFetch = ', shouldFetch)
+      const data = await getDecks();
+      this.setState({
+        decks: data,
+      });
+      navigation.navigate('Decks', {
+        shouldFetch: false,
+      });
+    }
+  }
+
   render() {
+    const { decks } = this.state;
+    const { navigation } = this.props;
+
     return (
         <ScrollView style={styles.container}>
-        {
-          Object.keys(dummyData).map((deckID) => {
-            const deck = dummyData[deckID];
-
-            return (
-              <DeckInfo 
-                title={deck.title} 
-                questionsNum={deck.questions.length} 
-                key={deck.title} 
-                onPress={() => {
-                  /* Navigate to the Deck route with params */
-                  this.props.navigation.navigate('Deck', {
-                    title: deck.title,
-                    questionsNum: deck.questions.length,
-                  });
-                }}
-              />
-            );
+          <NavigationEvents onDidFocus={this.fetchIfNeeded} />
           
-          })
-        }
+          {
+            Object.keys(decks).map((deckID) => {
+              const deck = decks[deckID];
+
+              return (
+                <DeckInfo 
+                  title={deck.title} 
+                  questionsNum={deck.questions.length} 
+                  key={deck.title} 
+                  onPress={() => {
+                    /* Navigate to the Deck route with params */
+                    navigation.navigate('Deck', {
+                      title: deck.title,
+                      questionsNum: deck.questions.length,
+                    });
+                  }}
+                />
+              );
+            })
+          }
         </ScrollView>
     );
   }
