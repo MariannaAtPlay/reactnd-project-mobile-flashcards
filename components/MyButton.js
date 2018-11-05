@@ -29,27 +29,28 @@ const styles = StyleSheet.create({
     button: Platform.select({
       ios: {
         height: 45,
-        width: 120,
         borderRadius: 2,
-        margin: 10,
+        marginVertical: 10,
+        marginHorizontal: 'auto'
       },
       android: {
         elevation: 4,
         borderRadius: 2,
-        margin: 10
+        marginVertical: 10,
+        marginHorizontal: 'auto'
       },
     }),
     text: Platform.select({
       ios: {
         color: 'white',
         textAlign: 'center',
-        padding: 8,
+        padding: 10,
         fontSize: 18,
       },
       android: {
         color: 'white',
         textAlign: 'center',
-        padding: 8,
+        padding: 10,
         fontWeight: '500',
       },
     }),
