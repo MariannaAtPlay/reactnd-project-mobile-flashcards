@@ -30,6 +30,7 @@ class NewCardScreen extends React.Component {
   }
 
   render() {
+    const isEnabled = this.state.question.length > 0 && this.state.answer.length > 0;
 
     return (
       <View style={styles.container}>
@@ -53,6 +54,7 @@ class NewCardScreen extends React.Component {
         <MyButton 
           title='Submit' 
           color={ksuPurple}
+          disabled={!isEnabled}
           onPress={this.handleSubmit}  
         />
       </View>

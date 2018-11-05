@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 
-function MyButton ({ title, color, onPress, outline }) {
+function MyButton ({ title, color, onPress, outline, disabled }) {
   const buttonStyles = [styles.button];
   const textStyles = [styles.text];
 
@@ -13,11 +13,16 @@ function MyButton ({ title, color, onPress, outline }) {
     textStyles.push({borderStyle: 'solid'});
     textStyles.push({borderColor: color});
   }
+  if (disabled) {
+    buttonStyles.push({opacity: 0.3});
+  }
 
   return (
     <TouchableOpacity
       style={buttonStyles}
-      onPress={onPress}>
+      disabled={disabled}
+      onPress={onPress}
+    >
         <Text style={textStyles}>
           {title}
         </Text>
@@ -28,7 +33,6 @@ function MyButton ({ title, color, onPress, outline }) {
 const styles = StyleSheet.create({
     button: Platform.select({
       ios: {
-        height: 45,
         borderRadius: 2,
         marginVertical: 10,
         marginHorizontal: 'auto'
@@ -44,13 +48,15 @@ const styles = StyleSheet.create({
       ios: {
         color: 'white',
         textAlign: 'center',
-        padding: 10,
+        paddingHorizontal: 40,
+        paddingVertical: 10,
         fontSize: 18,
       },
       android: {
         color: 'white',
         textAlign: 'center',
-        padding: 10,
+        paddingHorizontal: 40,
+        paddingVertical: 10,
         fontWeight: '500',
       },
     }),

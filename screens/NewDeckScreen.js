@@ -27,6 +27,7 @@ class NewDeckScreen extends React.Component {
   }
 
   render() {
+    const isEnabled = this.state.title.length > 0;
 
     return (
       <View style={styles.container}>
@@ -43,6 +44,7 @@ class NewDeckScreen extends React.Component {
           title='Submit' 
           color={ksuPurple}
           onPress={this.handleSubmit}  
+          disabled={!isEnabled}
         />
       </View>
     );
