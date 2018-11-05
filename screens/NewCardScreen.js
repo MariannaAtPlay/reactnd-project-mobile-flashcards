@@ -2,26 +2,29 @@ import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { ksuPurple, lavenderMist, russianViolet } from '../constants/Colors';
 import MyButton from '../components/MyButton';
-import { saveDeckTitle } from '../utils/api';
+import { addCardToDeck } from '../utils/api';
 
 
-class NewDeckScreen extends React.Component {
+class NewCardScreen extends React.Component {
   static navigationOptions = {
-    title: 'New Deck',
+    title: 'Add Card',
   };
 
   state = {
-    title: ''
+    question: '',
+    answer: '',
   }
 
   handleSubmit = () => {
     const { navigation } = this.props;
-    const { handleSaveDeckTitle } = this.props.screenProps;
+    const { handleAddCardToDeck } = this.props.screenProps;
+    const title = navigation.getParam('title');
 
-    saveDeckTitle(this.state.title);
-    handleSaveDeckTitle(this.state.title);
+    addCardToDeck(title, this.state);
+    handleAddCardToDeck(title, this.state);
     this.setState({
-      title: ''
+      question: '',
+      answer: '',
     });
     navigation.navigate('Decks');
   }
@@ -31,14 +34,22 @@ class NewDeckScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>
-          What is the title of your new deck?
+          Enter the Question
         </Text> 
         <TextInput
           style={styles.textInput}
-          onChangeText={(title) => this.setState({ title })}
-          value={this.state.title}
+          onChangeText={(question) => this.setState({ question })}
+          value={this.state.question}
         />
-        
+        <Text style={styles.text}>
+          Enter the Answer
+        </Text> 
+        <TextInput
+          style={styles.textInput}
+          onChangeText={(answer) => this.setState({ answer })}
+          value={this.state.answer}
+        />
+
         <MyButton 
           title='Submit' 
           color={ksuPurple}
@@ -71,4 +82,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default NewDeckScreen;
+export default NewCardScreen;

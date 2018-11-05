@@ -6,12 +6,14 @@ import DecksScreen from '../screens/DecksScreen';
 import DeckScreen from '../screens/DeckScreen';
 import QuizScreen from '../screens/QuizScreen';
 import NewDeckScreen from '../screens/NewDeckScreen';
+import NewCardScreen from '../screens/NewCardScreen';
 import { russianViolet, tabIconDefault } from '../constants/Colors';
 
 const DecksStack = createStackNavigator({
   Decks: DecksScreen,
   Deck: DeckScreen,
   Quiz: QuizScreen,
+  AddCard: NewCardScreen,
 });
 
 DecksStack.navigationOptions = {

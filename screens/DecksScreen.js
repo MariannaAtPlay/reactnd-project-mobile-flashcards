@@ -8,52 +8,21 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { NavigationEvents } from 'react-navigation';
 import DeckInfo from '../components/DeckInfo';
 import { lavenderMist } from '../constants/Colors';
-import { getDecks } from '../utils/api';
-
 
 class DecksScreen extends React.Component {
   static navigationOptions = {
     title: 'Decks',
   };
 
-  state = {
-    decks: {}
-  }
-
-  async componentDidMount () {
-    const data = await getDecks();
-    this.setState({
-      decks: data,
-    });
-  }
-
-  fetchIfNeeded = async () => {
-    const { navigation } = this.props;
-    const shouldFetch = navigation.getParam('shouldFetch', false);
-
-    if (shouldFetch) {
-      console.log('Fetching data, shouldFetch = ', shouldFetch)
-      const data = await getDecks();
-      this.setState({
-        decks: data,
-      });
-      navigation.navigate('Decks', {
-        shouldFetch: false,
-      });
-    }
-  }
-
   render() {
-    const { decks } = this.state;
+    console.log('Decks screenprops', this.props.screenProps)
+    const { decks } = this.props.screenProps;
     const { navigation } = this.props;
 
     return (
         <ScrollView style={styles.container}>
-          <NavigationEvents onDidFocus={this.fetchIfNeeded} />
-          
           {
             Object.keys(decks).map((deckID) => {
               const deck = decks[deckID];

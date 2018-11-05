@@ -27,11 +27,9 @@ class QuizScreen extends React.Component {
   }
 
   async componentDidMount() {
-    //TODO get data from AsyncStorage
     const { navigation } = this.props;
     const title = navigation.getParam('title');
     const deck = await getDeck(title);
-    console.log('inside Quiz componentDidMount, deck= ', deck, 'title = ', title)
 
     this.setState({
       title: deck.title,

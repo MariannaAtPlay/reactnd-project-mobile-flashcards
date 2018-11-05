@@ -30,7 +30,17 @@ class DeckScreen extends React.Component {
             <Text style={styles.deckSubTitle}>
                 {questionsNum} {questionsNum === 1 ? 'card' : 'cards'}
             </Text>
-            <MyButton color={ksuPurple} title='Add Card' outline />
+            <MyButton 
+              color={ksuPurple} 
+              title='Add Card' 
+              outline 
+              onPress={() => {
+                /* Navigate to the Quiz route with params */
+                this.props.navigation.navigate('AddCard', {
+                  title,
+                });
+              }}  
+            />
             <MyButton 
               color={ksuPurple} 
               title='Start Quiz' 
