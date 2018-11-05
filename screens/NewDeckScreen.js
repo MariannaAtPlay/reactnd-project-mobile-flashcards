@@ -20,10 +20,15 @@ class NewDeckScreen extends React.Component {
 
     saveDeckTitle(this.state.title);
     handleSaveDeckTitle(this.state.title);
+
+    navigation.navigate('Deck', {
+      title: this.state.title,
+      questionsNum: 0,
+    });
+    
     this.setState({
       title: ''
     });
-    navigation.navigate('Decks');
   }
 
   render() {
@@ -41,7 +46,7 @@ class NewDeckScreen extends React.Component {
         />
         
         <MyButton 
-          title='Submit' 
+          title='Create Deck' 
           color={ksuPurple}
           onPress={this.handleSubmit}  
           disabled={!isEnabled}
