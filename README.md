@@ -15,7 +15,7 @@ Features:
 * fork and clone to get the source code on your local computer
 * to install the dependencies, use `npm install` or `yarn install`
 * to start the app, use `npm start` or `yarn start`
-* use an iPhone [simulator](https://developer.apple.com/xcode/) OR Android emulator to run this in the browser or Expo mobbile app to run this on your phone - [this one](https://itunes.apple.com/app/apple-store/id982107779) is for iOS, but there is an equivalent for Android.
+* use an iPhone [simulator](https://developer.apple.com/xcode/) OR Android emulator to run this in the browser or Expo mobile app to run this on your phone - [this one](https://itunes.apple.com/app/apple-store/id982107779) is for iOS, but there is an equivalent for Android.
 
 ### Platform
 
