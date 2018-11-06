@@ -1,12 +1,7 @@
 import React from 'react';
 import {
-  Image,
-  Platform,
   ScrollView,
   StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
 } from 'react-native';
 import DeckInfo from '../components/DeckInfo';
 import { lavenderMist } from '../constants/Colors';
@@ -17,7 +12,6 @@ class DecksScreen extends React.Component {
   };
 
   render() {
-    console.log('Decks screenprops', this.props.screenProps)
     const { decks } = this.props.screenProps;
     const { navigation } = this.props;
 

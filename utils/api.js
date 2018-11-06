@@ -1,7 +1,8 @@
 import { AsyncStorage } from 'react-native';
 import { setDummyData } from './helpers';
 
-export const FLAHSCARDS_STORAGE_KEY = 'Flashcards';
+export const FLAHSCARDS_STORAGE_KEY = 'Flashcards:decks';
+export const NOTIFICATION_KEY = 'Flashcards:notifications';
 
 export async function getDeck (id) {
   try {
@@ -9,7 +10,6 @@ export async function getDeck (id) {
     if (results !== null) {
       // We have data!!
       const data = await JSON.parse(results);
-      console.log('inside getDeck, data = ', data, 'id= ', id)
       return data[id];
     } else {
       console.log('AsyncStorage getItem() returned null')
@@ -21,7 +21,8 @@ export async function getDeck (id) {
 
 export async function getDecks () {
   try {
-    //await AsyncStorage.removeItem(FLAHSCARDS_STORAGE_KEY);
+    //uncomment the next line to reset the app to the original data
+    //await AsyncStorage.removeItem('Flashcards');
     const results = await AsyncStorage.getItem(FLAHSCARDS_STORAGE_KEY);
     let data;
     if (results !== null) {

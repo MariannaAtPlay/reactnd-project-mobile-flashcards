@@ -1,10 +1,7 @@
 import React from 'react';
 import {
-  Image,
-  Platform,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
   ScrollView,
   Button
@@ -12,6 +9,7 @@ import {
 import MyButton from '../components/MyButton';
 import { ksuPurple, lavenderMist, russianViolet, red, green } from '../constants/Colors';
 import { getDeck } from '../utils/api';
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 
 class QuizScreen extends React.Component {
   static navigationOptions = {
@@ -35,6 +33,9 @@ class QuizScreen extends React.Component {
       title: deck.title,
       questions: deck.questions,
     });
+
+    await clearLocalNotification();
+    setLocalNotification();
   }
 
   flipCard = () => {

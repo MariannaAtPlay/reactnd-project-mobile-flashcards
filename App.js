@@ -4,8 +4,9 @@ import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 import { lavenderMist } from './constants/Colors';
 import { getDecks } from './utils/api';
+import { setLocalNotification } from './utils/helpers'
 
-export default class App extends React.Component {
+class App extends React.Component {
   state = {
     decks: {}
   }
@@ -15,6 +16,7 @@ export default class App extends React.Component {
     this.setState({
       decks: data,
     });
+    setLocalNotification();
   }
 
   handleSaveDeckTitle = (title) => {
@@ -30,8 +32,6 @@ export default class App extends React.Component {
   }
 
   handleAddCardToDeck = (title, card) => {
-    //debugger;
-    console.log(this.state.decks[title]);
     const updatedQuestions = [...this.state.decks[title].questions, card];
     
     this.setState({
@@ -67,3 +67,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+export default App;
