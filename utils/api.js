@@ -22,7 +22,7 @@ export async function getDeck (id) {
 export async function getDecks () {
   try {
     //uncomment the next line to reset the app to the original data
-    //await AsyncStorage.removeItem('Flashcards');
+    //await AsyncStorage.removeItem(FLAHSCARDS_STORAGE_KEY);
     const results = await AsyncStorage.getItem(FLAHSCARDS_STORAGE_KEY);
     let data;
     if (results !== null) {
