@@ -2,8 +2,8 @@ import { AsyncStorage } from 'react-native';
 import { FLAHSCARDS_STORAGE_KEY, NOTIFICATION_KEY } from './api';
 import { Notifications, Permissions } from 'expo';
 
-export async function setDummyData () {
-    const dummyData = {
+export async function setInitialData () {
+    const initialData = {
         React: {
           title: 'React',
           questions: [
@@ -29,7 +29,8 @@ export async function setDummyData () {
     };
 
     try {
-      return await AsyncStorage.setItem(FLAHSCARDS_STORAGE_KEY, JSON.stringify(dummyData));
+      await AsyncStorage.setItem(FLAHSCARDS_STORAGE_KEY, JSON.stringify(initialData));
+      return initialData;
     } catch (error) {
       console.error('AsyncStorage setItem() error: ' + error.message);
     }

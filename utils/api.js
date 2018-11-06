@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-import { setDummyData } from './helpers';
+import { setInitialData } from './helpers';
 
 export const FLAHSCARDS_STORAGE_KEY = 'Flashcards:decks';
 export const NOTIFICATION_KEY = 'Flashcards:notifications';
@@ -24,12 +24,16 @@ export async function getDecks () {
     //uncomment the next line to reset the app to the original data
     //await AsyncStorage.removeItem(FLAHSCARDS_STORAGE_KEY);
     const results = await AsyncStorage.getItem(FLAHSCARDS_STORAGE_KEY);
+    console.log('inside getDecks,  results = ', results)
     let data;
+
     if (results !== null) {
       // We have data!!
       data = await JSON.parse(results);
+      console.log('inside getDecks, data = ', data)
     } else {
-      data = await setDummyData();
+      data = await setInitialData();
+      console.log('inside getDecks, dummy data, data = ', data)
     }
     return data;
    } catch(err) {

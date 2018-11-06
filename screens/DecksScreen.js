@@ -18,7 +18,7 @@ class DecksScreen extends React.Component {
     return (
         <ScrollView style={styles.container}>
           {
-            Object.keys(decks).map((deckID) => {
+            decks && Object.keys(decks).map((deckID) => {
               const deck = decks[deckID];
 
               return (
